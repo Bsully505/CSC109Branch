@@ -1,7 +1,14 @@
 public class BranchCSC109 {
-
-    public static void main(String[] args){
-        System.out.println("hello World");
-        System.out.println("testing pt2");
+    String[][] fourBoard;
+    public BranchCSC109(){
+        fourBoard = new String[7][6];
     }
+    public static void main(String[] args){
+        BranchCSC109 Connectfour = new BranchCSC109();
+
+    }
+    public void run(){
+
+    }
+
 }
