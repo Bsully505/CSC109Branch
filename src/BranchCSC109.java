@@ -36,53 +36,56 @@ public class BranchCSC109 {
         System.out.println("Rules: \n1)Player one is x and goes first \n" +
                 "2)First player with a continuation of 4 wins \n3)When playing your turn you can only go in a not full column of 1 through 7");
         boolean turner = true;
-        while(!win && MoveNum < 42){//need to double check that it is 42 which would allow for the whole board to be filled
+        while(!win && MoveNum < 42){
 
             System.out.println("Please enter which column you are dropping your tocken in");
             boolean flagger = true;
+            boolean ColFlag = true;
             int Column =-1;
-            while(flagger) {
-                String Col = input.nextLine();
-                try {
-                    Column = Integer.parseInt(Col) - 1;
-                    if(Column >=0 && Column <7){
-                        flagger = false;
-                    }
-                    else{
-                        System.out.println("please enter a number 1 through 7 ex. 3");
-                    }
-                }
-                catch (NumberFormatException e){
-                    System.out.println("You did not enter a number, please enter a number 1 through 7 ex. 3");
-                }
-
-            }
-
-            if(fourBoard[0][Column]== null){
-                int zed = 0;
-                boolean pass = true;
-                while(zed < fourBoard.length-1 && pass){
-                    System.out.println("running search");
-                    if(fourBoard[zed+1][Column]!= null){
-                        pass = false;
-                    }
-                    else {
-                        zed = zed + 1;
+            while(ColFlag) {
+                while (flagger) {
+                    String Col = input.nextLine();
+                    try {
+                        Column = Integer.parseInt(Col) - 1;
+                        if (Column >= 0 && Column < 7) {
+                            flagger = false;
+                        } else {
+                            System.out.println("please enter a number 1 through 7 ex. 3");
+                        }
+                    } catch (NumberFormatException e) {
+                        System.out.println("You did not enter a number, please enter a number 1 through 7 ex. 3");
                     }
 
                 }
-                //if statment required for whose turn it is
-                if(turner) {
-                    fourBoard[zed][Column] = "X";
-                    win = DidWin(Column,zed);
-                    turner = false;
-                    MoveNum++;
-                }
-                else{
-                    fourBoard[zed][Column] = "0";
-                    turner = true;
-                    win = DidWin(Column,zed);
-                    MoveNum++;
+
+                if (fourBoard[0][Column] == null) {
+                    ColFlag = false;
+                    int zed = 0;
+                    boolean pass = true;
+                    while (zed < fourBoard.length - 1 && pass) {
+                        System.out.println("running search");
+                        if (fourBoard[zed + 1][Column] != null) {
+                            pass = false;
+                        } else {
+                            zed = zed + 1;
+                        }
+
+                    }
+                    //if statment required for whose turn it is
+                    if (turner) {
+                        fourBoard[zed][Column] = "X";
+                        win = DidWin(Column, zed);
+                        turner = false;
+                        MoveNum++;
+                    } else {
+                        fourBoard[zed][Column] = "0";
+                        turner = true;
+                        win = DidWin(Column, zed);
+                        MoveNum++;
+                    }
+                } else {
+                    System.out.println("This slot is full. Choose another.");
+                    flagger = true;
                 }
             }
             ShowBoard();
