@@ -35,8 +35,28 @@ public class BranchCSC109 {
 
         while(!win){
             System.out.println("Please enter which column you are dropping your tocken in");
+
+
             String Col = input.nextLine();
 
+            int Column  = 0;//this is what the players column is going to be
+            if(fourBoard[0][Column]== null){
+                int zed = 0;
+                boolean pass = true;
+                while(zed < fourBoard.length-1 && pass){
+                    System.out.println("running search");
+                    if(fourBoard[zed+1][Column]!= null){
+                        pass = false;
+                    }
+                    else {
+                        zed = zed + 1;
+                    }
+
+                }
+                //if statment required for whose turn it is
+                fourBoard[zed][Column] = "X";
+            }
+            ShowBoard();
         }
 
     }
