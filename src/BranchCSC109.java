@@ -32,14 +32,16 @@ public class BranchCSC109 {
         //im going to have to incorporate populating the
         System.out.println("Rules: \n1)Player one is x and goes first \n" +
                 "2)First player with a continuation of 4 wins \n3)When playing your turn you can only go in a not full column of 1 through 7");
-
+        boolean turner = true;
         while(!win){
+
             System.out.println("Please enter which column you are dropping your tocken in");
 
 
             String Col = input.nextLine();
+            //add a parse checker if statement where the number how to be 1-7 and an integer
 
-            int Column  = 0;//this is what the players column is going to be
+            int Column  = Integer.parseInt(Col)-1;
             if(fourBoard[0][Column]== null){
                 int zed = 0;
                 boolean pass = true;
@@ -54,7 +56,14 @@ public class BranchCSC109 {
 
                 }
                 //if statment required for whose turn it is
-                fourBoard[zed][Column] = "X";
+                if(turner) {
+                    fourBoard[zed][Column] = "X";
+                    turner = false;
+                }
+                else{
+                    fourBoard[zed][Column] = "0";
+                    turner = true;
+                }
             }
             ShowBoard();
         }
