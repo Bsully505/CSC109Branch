@@ -13,7 +13,8 @@ public class BranchCSC109 {
     Scanner input ;
     boolean win;
     public BranchCSC109(){
-        fourBoard = new String[7][6];
+        fourBoard = new String[6][7];
+        ShowBoard();
         input =  new Scanner(System.in);
         win = false;
         run();
@@ -37,6 +38,25 @@ public class BranchCSC109 {
             String Col = input.nextLine();
 
         }
+
+    }
+    public void ShowBoard(){
+        System.out.println("*_*_*_*_*_*_*_*");
+        for(int i = 0; i < fourBoard.length;i++){
+            for(int z =0;z< fourBoard[i].length;z++){
+                if(fourBoard[i][z] == null){
+                    System.out.print("| " );
+                }
+                else {
+                    System.out.print("|" + fourBoard[i][z]);
+                }
+            }
+            System.out.println("|");
+            
+        }
+        System.out.println("*_*_*_*_*_*_*_*");
+        System.out.println(" 1 2 3 4 5 6 7");
+
 
     }
 
